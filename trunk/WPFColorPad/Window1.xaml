@@ -2,15 +2,16 @@
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="0.66*" />
-            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="206*" />
+            <RowDefinition Height="180*" />
+            <RowDefinition Height="176*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.514*" />
             <ColumnDefinition Width="0.486*" />
         </Grid.ColumnDefinitions>
 
-        <ListBox x:Name="ColorSelectionList" SelectionMode="Extended" ItemsSource="{Binding ColorSourceList}" Grid.Row="0" SelectionChanged="ColorSelectionListSelectionChanged">
+        <ListBox x:Name="ColorSelectionList" SelectionMode="Extended" ItemsSource="{Binding ColorSourceList}" SelectionChanged="ColorSelectionListSelectionChanged" Grid.RowSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
 
@@ -21,7 +22,7 @@
 
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{Binding Name}" Width="210" TextAlignment="Center" Margin="3" />
-                        <Rectangle Grid.Column="1" Height="20" Width="100" HorizontalAlignment="Stretch" Fill="{Binding Hexa}" Stroke="#FF000000" Margin="3" />
+                        <Rectangle RadiusX="5" RadiusY="5" Grid.Column="1" Height="20" Width="100" HorizontalAlignment="Stretch" Fill="{Binding Hexa}" Stroke="#FF000000" Margin="3" />
 
                     </Grid>
 
@@ -29,7 +30,7 @@
             </ListBox.ItemTemplate>
 
         </ListBox>
-        <ListBox x:Name="ColorSelectedList" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" ItemsSource="{Binding SelectedColorsList}" Grid.ColumnSpan="2">
+        <ListBox x:Name="ColorSelectedList" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="2" ItemsSource="{Binding SelectedColorsList}" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="1" BorderBrush="Black">
@@ -46,7 +47,7 @@
                                 <TextBlock  Text="{Binding Name}" ToolTip="{Binding FormatedName}" Width="80" VerticalAlignment="Center" TextAlignment="Left" Margin="3" />
                                 <TextBlock  Text="{Binding Hexa}" ToolTip="{Binding FormatedName}"  VerticalAlignment="Center" TextAlignment="Left" Margin="3" />
                             </StackPanel>
-                            <Rectangle Grid.Column="1" Grid.Row="0" Height="20" Width="40" HorizontalAlignment="Stretch" Fill="{Binding Hexa}" Stroke="#FF000000" Margin="3" />
+                            <Rectangle RadiusX="10" RadiusY="10" Grid.Column="1" Grid.Row="0" Height="20" Width="40" HorizontalAlignment="Stretch" Fill="{Binding Hexa}" Stroke="#FF000000" Margin="3" />
                             <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Details}" ToolTip="{Binding Details}" VerticalAlignment="Stretch" TextAlignment="Left" Margin="3" />
                         </Grid>
                     </Border>
@@ -58,7 +59,7 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <StackPanel Margin="0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top">
+        <StackPanel Margin="0,0,0,5.723" Grid.Column="1">
             <Grid Margin="5,5,10,5" Height="150">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.35*" />
@@ -85,11 +86,11 @@
                 <Slider Grid.Column="1" Grid.Row="3" Margin="5" Name="bSlider" Value="{Binding BlueValue, Mode=TwoWay}" VerticalAlignment="Center" Maximum="255" SmallChange="1" />
             </Grid>
             <StackPanel HorizontalAlignment="Right" Margin="5" Orientation="Horizontal">
-                <Rectangle Grid.Column="1" Height="20" Width="45" HorizontalAlignment="Stretch" Fill="{Binding CurrentColor.Hexa}" Stroke="#FF000000" Margin="3" />
                 <TextBlock Text="Color Name" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center" />
                 <TextBox Margin="5" TextWrapping="Wrap" Text="{Binding ColorName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" />
                 <Button x:Name="BtnAddcolor" Margin="5" Content="Add color !" Command="{Binding AddColor}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20.2766666666667" Width="80" />
             </StackPanel>
         </StackPanel>
+        <Rectangle RadiusX="25" RadiusY="25" Margin="5" Grid.Column="1" Grid.Row="1" Fill="{Binding CurrentColor.Hexa}" Stroke="#FF000000"  />
     </Grid>
 </Window>
