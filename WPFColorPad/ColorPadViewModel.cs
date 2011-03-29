@@ -33,6 +33,8 @@ namespace BCharppe.WPFColorManager
             ColorSourceList = new ObservableCollection<ColorAdapter>();
             SelectedColorsList = new ObservableCollection<ColorAdapter>();
 
+            SelectedColorsList.CollectionChanged += SelectedColorsListCollectionChanged;
+
             PropertyInfo[] items = typeof(Colors).GetProperties();
 
             foreach (PropertyInfo c in items)
@@ -47,6 +49,21 @@ namespace BCharppe.WPFColorManager
             PropertyChanged += ColorPadViewModelPropertyChanged;
 
             _addColor = new RelayCommand(ExecuteAddColor, CanExecuteAddcolor);
+        }
+
+        void SelectedColorsListCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null && e.NewItems.Count > 0)
+            {
+                var color = e.NewItems[0] as ColorAdapter;
+                if (color != null)
+                {
+                    AlphaValue = color.A;
+                    RedValue = color.R;
+                    GreenValue = color.G;
+                    BlueValue = color.B;
+                }
+            }
         }
 
         public RelayCommand AddColor
