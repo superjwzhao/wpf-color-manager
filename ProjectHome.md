@@ -1,0 +1,1 @@
+Basically, the WPF color manager enable you to choose one or many colors from WPF colors. Selected colors appear in a separate list with ARGB and Hexa values informations. In addition, a color editor pane enable you to make your own custom color and to add it to the original source list, such that it can be selected from the list as any of the original WPF colors.
